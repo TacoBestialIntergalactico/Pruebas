@@ -3,7 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import { MaterialCommunityIcons } from '@expo/vector-icons'
 
 import theme from './theme';
 import ToggleDarkMode from './ToggleDarkMode';
@@ -21,6 +21,17 @@ import RoomScreen from './src/components/Drawer/RoomScreen';
 import HostingScreen from './src/components/Drawer/HostingScreen';
 import DevicesScreen from './src/components/Drawer/DevicesScreen';
 import AccessCodeScreen from './src/components/AccessCodeScreen';
+
+// Componentes de navegacion Services - Activities
+import ActMustangMountainsScreen from './src/components/Activities/ActMustangMountainsScreen';
+import ActRoyalValleyScreen from './src/components/Activities/ActRoyalValleyScreen';
+import ActSkiAlpineHeightsScreen from './src/components/Activities/ActSkiAlpineHeightsScreen';
+import ActSkyDivingAlpineHeightsScreen from './src/components/Activities/ActSkyDivingAlpineHeightsScreen';
+
+import ServRestaurantScreen from './src/components/Services/ServRestaurantScreen';
+import ServRoomServicesScreen from './src/components/Services/ServRoomServicesScreen';
+import ServSpaScreen from './src/components/Services/ServSpaScreen';
+
 import { NativeBaseProvider, useColorMode, useColorModeValue } from 'native-base';
 
 const Stack = createNativeStackNavigator();
@@ -33,11 +44,11 @@ const TabNavigatorHome = () => (
       tabBarIcon: ({ focused, color, size }) => {
         let iconName;
         if (route.name === 'Services') {
-          iconName = focused ? 'ios-information-circle' : 'ios-information-circle-outline';
+          iconName = focused ? 'information' : 'information-outline';
         } else if (route.name === 'Activities') {
-          iconName = focused ? 'ios-list' : 'ios-list-outline';
+          iconName = focused ? 'format-list-bulleted' : 'format-list-bulleted-type';
         }
-        return <Ionicons name={iconName} size={size} color={color} />;
+        return <MaterialCommunityIcons name={iconName} size={size} color={color} />;
       },
       tabBarActiveTintColor: 'tomato',
       tabBarInactiveTintColor: 'gray',
@@ -63,6 +74,13 @@ const StackNavigatorApp = () => (
     <Stack.Screen name="Beacon" component={BeaconScreen} />
     <Stack.Screen name="Access" component={AccessCodeScreen} />
     <Stack.Screen name="Main" component={DrawerNavigatorApp} />
+    <Stack.Screen name="Resort - Royal Valley" component={ActRoyalValleyScreen} />
+    <Stack.Screen name="Mustang Mountains" component={ActMustangMountainsScreen} />
+    <Stack.Screen name="Ski - Alpine Heights" component={ActSkiAlpineHeightsScreen} />
+    <Stack.Screen name="Sky Diving - Alpine Heights" component={ActSkyDivingAlpineHeightsScreen} />
+    <Stack.Screen name="Restaurant" component={ServRestaurantScreen} />
+    <Stack.Screen name="Room Services" component={ServRoomServicesScreen} />
+    <Stack.Screen name="Spa" component={ServSpaScreen} />
   </Stack.Navigator>
 );
 
